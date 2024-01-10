@@ -11,4 +11,10 @@ def print_matrix_integer(matrix=[[]]):
                     endspace = ''
                 print("{:d}".format(matrix[row][item]), end=endspace)
             print()
+<<<<<<< HEAD
 
+=======
+        for i in range(len(submatrix)):
+            print("{:d}".format(submatrix[i]),
+                    end="\n" if i is len(submatrix) - 1 else " ")
+>>>>>>> 3edcae50c63441019cc3994286d6bd70a944d933
