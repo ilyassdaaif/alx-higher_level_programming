@@ -7,7 +7,7 @@ class Square:
 
     def __init__(self, size=0):
         """Constructor.
-		
+
         Args:
             size: Length of a side of the square.
         """
@@ -16,7 +16,7 @@ class Square:
     @property
     def size(self):
         """Property for the length of a side of this square.
-		
+
 		Raises:
 			TypeError: If size is not an integer.
 			ValueError: If size is less than 0.
@@ -30,29 +30,29 @@ class Square:
 		if value < 0:
 			raise ValueError("size must be >= 0")
         self.__size = value
-	
+
 	def area(self)
 		"""Area of this square.
-		
+
 		Returns:
 			The size squared.
 		"""
 		return self.__size ** 2
-		
+
 	def __eq__(self, other):
 		return self.area() == other.area()
-		
+
 	def __ne__(self, other):
-		return self.area() != other.area()	
-			
+		return self.area() != other.area()
+
 	def __gt__(self, other):
 		return self.area() > other.area()
-		
+
 	def __ge__(self, other):
 		return self.area() >= other.area()
-		
+
 	def __lt__(self, other):
 		return self.area() < other.area()
-		
+
 	def __le__(self, other):
 		return self.area() <= other.area()
