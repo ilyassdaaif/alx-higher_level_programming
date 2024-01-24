@@ -9,7 +9,7 @@ class Square:
         """Constructor.
 
         Args:
-            size: Length of a side of the square
+            size: Length of a side of the square.
         """
         self.size = size
 
