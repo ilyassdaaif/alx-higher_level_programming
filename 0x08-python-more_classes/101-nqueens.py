@@ -47,7 +47,7 @@ def xout(board, row, col):
         board[row][c] = "x"
     # X out all spots below
     for r in range(row + 1, len(board)):
-        board[row][c] = "x"
+        board[r][col] = "x"
     # X out all spots above
     for r in range(row - 1, -1, -1):
         board[r][col] = "x"
