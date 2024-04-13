@@ -1,22 +1,24 @@
 #!/usr/bin/python3
-"""Module that lists all states from the hbtn_0e_0_usa database."""
-
-import sys
+"""
+Script that lists all cities from the database hbtn_0e_4_usa
+"""
 import MySQLdb
+from sys import argv
 
-if __name__ == "__main__":
-    # Get MySQL credentials and search name from command-line arguments
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+# The code should not be executed when imported
+if __name__ == '__main__':
+    # make a connection to the database
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
 
-    # Connect to MySQL server
-    c = db.cursor()
+    cur = db.cursor()
+    cur.execute("SELECT cities.id, cities.name, states.name FROM cities\
+                INNER JOIN states ON cities.state_id = states.id\
+                ORDER BY cities.id ASC")
 
-     # Execute the SQL query to retrieve all states
-    c.execute("SELECT `c`.`id`, `c`.`name`, `s`.`name` \
-                 FROM `cities` as `c` \
-                INNER JOIN `states` as `s` \
-                   ON `c`.`state_id` = `s`.`id` \
-                ORDER BY `c`.`id`")
-
-    # Fetch all rows and print the states
-    [print(city) for city in c.fetchall()]
+    rows = cur.fetchall()
+    for i in rows:
+        print(i)
+    # Clean up process
+    cur.close()
+    db.close()
