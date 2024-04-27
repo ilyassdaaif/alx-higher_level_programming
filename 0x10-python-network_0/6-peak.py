@@ -4,17 +4,11 @@ def find_peak(list_of_integers):
 
     low, high = 0, len(list_of_integers) - 1
 
-    while low <= high:
+    while low < high:
         mid = (low + high) // 2
-        # Check if current element is a peak
-        if (mid == 0 or list_of_integers[mid - 1] <= list_of_integers[mid]) and \
-           (mid == len(list_of_integers) - 1 or list_of_integers[mid + 1] <= list_of_integers[mid]):
-            return list_of_integers[mid]
-        # If the left neighbor is greater, move left
-        elif mid > 0 and list_of_integers[mid - 1] > list_of_integers[mid]:
-            high = mid - 1
-        # If the right neighbor is greater, move right
+        if list_of_integers[mid] < list_of_integers[mid + 1]:
+            low = mid + 1  # Move right if the right element is greater
         else:
-            low = mid + 1
+            high = mid  # Move left otherwise, including when equal
 
-    return None  # This line should not be reached
+    return list_of_integers[low] if list_of_integers else None
