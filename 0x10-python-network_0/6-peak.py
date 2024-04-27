@@ -1,29 +1,33 @@
 #!/usr/bin/python3
+"""script for finding peak in list of ints, interview prep
+"""
 
+"""
+    THOUGHT PROCESS
+        it is not sorted, so sorting would take n(log(n))
+            -> not worth sorting
+        looping through and keeping track of max (brute force)
+            -> O(n)
+
+        possibly looping from each end reducing to 1/2 run time
+            -> still O(n)
+        
+        best solution: Use a modified binary search to find a peak in O(log n) time.
+"""
 
 def find_peak(list_of_integers):
-
-    if list_of_integers is None or len(list_of_integers) == 0:
+    """Binary search implementation to find a peak efficiently.
+    """
+    if not list_of_integers:
         return None
-
-    if len(list_of_integers) == 1:
-        return list_of_integers[0]
-
-    mid_idx = int(len(list_of_integers) / 2)
-
-    if mid_idx != len(list_of_integers) - 1:
-        if list_of_integers[mid_idx - 1] < list_of_integers[mid_idx] and\
-           list_of_integers[mid_idx + 1] < list_of_integers[mid_idx]:
-            return list_of_integers[mid_idx]
-    else:
-        if list_of_integers[mid_idx - 1] < list_of_integers[mid_idx]:
-            return list_of_integers[mid_idx]
+    
+    low, high = 0, len(list_of_integers) - 1
+    
+    while low < high:
+        mid = (low + high) // 2
+        if list_of_integers[mid] < list_of_integers[mid + 1]:
+            low = mid + 1  # The peak must be in the right half if the right neighbor is greater
         else:
-            return list_of_integers[mid_idx - 1]
+            high = mid  # The peak is in the left half or at mid
 
-    if list_of_integers[mid_idx - 1] > list_of_integers[mid_idx]:
-        a_list = list_of_integers[0:mid_idx]
-    else:
-        a_list = list_of_integers[mid_idx + 1:]
-
-    return find_peak(a_list)
+    return list_of_integers[low]  # low and high converge to the index of a peak
