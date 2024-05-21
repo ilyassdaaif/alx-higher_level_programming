@@ -1,17 +1,19 @@
 #!/usr/bin/node
-// Importing the file system module from Node.js
+
 const fs = require('fs');
 
-// Getting the file path from the command line arguments
+if (process.argv.length < 3) {
+    console.error('Usage: node 0-readme.js <filepath>');
+    process.exit(1);
+}
+
 const filePath = process.argv[2];
 
-// Reading the file content
 fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-	// If an error occurs, print the error object
-	console.error(err);
+	// Print the error object as a JSON string
+	console.error(JSON.stringify(err, Object.getOwnPropertyNames(err)));
     } else {
-	// If no error, print the file content
 	console.log(data);
     }
 });
