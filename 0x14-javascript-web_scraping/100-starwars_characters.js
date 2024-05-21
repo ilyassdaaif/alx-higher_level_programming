@@ -13,13 +13,13 @@ request(apiUrl, function (error, response, body) {
 
     movieData.characters.forEach((characterUrl) => {
       request(characterUrl, function (charError, charResponse, charBody) {
-	if (!charError && charResponse.statusCode === 200) {
-	  const characterData = JSON.parse(charBody);
+        if (!charError && charResponse.statusCode === 200) {
+          const characterData = JSON.parse(charBody);
 
-	  console.log(characterData.name);
+          console.log(characterData.name);
         } else {
-	  console.error('Error fetching character data:', charError);
-	}
+          console.error('Error fetching character data:', charError);
+        }
       });
     });
   } else {
