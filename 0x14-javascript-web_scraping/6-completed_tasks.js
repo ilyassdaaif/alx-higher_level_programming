@@ -12,13 +12,13 @@ request(apiUrl, function (error, response, body) {
       const completed = {};
 
       todos.forEach((todo) => {
-	if (todo.completed) {
-	  if (completed[todo.userId] === undefined) {
-	    completed[todo.userId] = 1;
-	  } else {
-	    completed[todo.userId]++;
-	  }
-	}
+        if (todo.completed) {
+          if (completed[todo.userId] === undefined) {
+            completed[todo.userId] = 1;
+          } else {
+            completed[todo.userId]++;
+          }
+        }
       });
 
       const output = `{${Object.entries(completed).map(([key, value]) => ` '${key}': ${value}`).join(',\n ')} }`;
