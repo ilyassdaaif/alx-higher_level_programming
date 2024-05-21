@@ -1,19 +1,17 @@
 #!/usr/bin/node
 
 const fs = require('fs');
+// Import the built-in Node.js 'fs' module.
 
-if (process.argv.length < 3) {
-    console.error('Usage: node 0-readme.js <filepath>');
-    process.exit(1);
-}
+fs.readFile(process.argv[2], 'utf8', function (error, content) {
+  // Use fs.readFile() to read the contents of a file specified as a command-line argument
+  // 'utf8' specifies the encoding of the file being read
 
-const filePath = process.argv[2];
-
-fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-	// Print the error object as a JSON string
-	console.error(JSON.stringify(err, Object.getOwnPropertyNames(err)));
-    } else {
-	console.log(data);
-    }
+  if (error) {
+    // If an error occurs during the file read operations, the 'error' parameter will contain an error object.
+    console.error('Error reading the file:', error);
+  } else {
+    // If the file is read successfully, the 'content' parameter will contain the contents of the file as a string.
+    console.log(content);
+  }
 });
