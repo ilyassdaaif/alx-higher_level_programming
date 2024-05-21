@@ -29,7 +29,12 @@ request(apiUrl, function (error, response, body) {
                 }
             });
 
-            console.log(completed);
+            // Convert the completed object to a string with single-quoted keys
+            const output = `{${Object.entries(completed)
+                .map(([key, value]) => ` '${key}': ${value}`)
+                .join(',\n')}}`;
+
+            console.log(output);
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
         }
