@@ -15,7 +15,7 @@ request(apiUrl, function (error, response, body) {
       request(characterUrl, function (charError, charResponse, charBody) {
 	if (!charError && charResponse.statusCode === 200) {
 	  const characterData = JSON.parse(charBody);
-	  
+
 	  console.log(characterData.name);
         } else {
 	  console.error('Error fetching character data:', charError);
